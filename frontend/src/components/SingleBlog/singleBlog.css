@@ -1,0 +1,37 @@
+.singleBlog{
+    width: 100%;
+    padding: 14px;
+}
+
+.singleBlog a{
+    text-decoration: none;
+    color: white;
+    padding: 7px 14px;
+    border-radius: 5px;
+}
+
+.singleBlog h3{
+    /* color: #f1356d; */
+}
+
+.singleBlog .field{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.singleBlog label{
+    margin-bottom:7px;
+}
+
+.singleBlog input, .singleBlog textarea{
+    padding:5px;
+}
+
+.singleBlog button{
+    padding: 7px 14px;
+    border: none;
+    border-radius:5px;
+    /* background-color: #f1356d; */
+    color: white;
+}

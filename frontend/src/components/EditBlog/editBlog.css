@@ -1,0 +1,41 @@
+.editBlog{
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+    align-items: center;
+}
+
+.editBlog .field{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.editBlog h1{
+    /* color: #f1356d; */
+    font-size: 30px;
+    font-family: monospace;
+}
+
+.editBlog input, .editBlog textarea{
+    width: 100%;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.editBlog input:focus, .editBlog textarea:focus{
+    /* outline-color: #f1356d; */
+}
+
+.editBlog label{
+    margin-bottom:5px;
+}
+
+.editBlog button{
+    padding:7px 14px;
+    /* background-color:#f1356d; */
+    color: white;
+    border: none;
+    border-radius:5px;
+    font-size: 16px;
+}
