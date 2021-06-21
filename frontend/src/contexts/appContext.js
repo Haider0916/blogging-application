@@ -7,7 +7,6 @@ export function useTheme(){
 }
 
 export function AppTheme( { children , reducer , initialState } ){
-
     return(
         <appTheme.Provider value={React.useReducer( reducer , initialState )}>
             {children}

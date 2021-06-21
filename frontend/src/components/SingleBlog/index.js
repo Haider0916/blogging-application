@@ -25,7 +25,7 @@ function SingleBlog() {
     
     const [ state , dispatch ] = useTheme();
 
-    const { blogs , theme , comments } = state;
+    const { blogs , checked , comments } = state;
 
     const passed_id = useParams().id;
 
@@ -77,13 +77,13 @@ function SingleBlog() {
 
     return (
         <div className="singleBlog">
-            <h3 style={{color: theme}}>{blog.title}</h3>
+            <h3 style={{color: checked ? "#34568B" : "#f1356d"}}>{blog.title}</h3>
             <p>written by <b>{blog.author}</b></p>
             <p>{blog.body}</p>
-            <button onClick={()=>{handleDelete(blog.id)}} style={{backgroundColor:theme}}>DELETE</button>
+            <button onClick={()=>{handleDelete(blog.id)}} style={{backgroundColor:checked ? "#34568B" : "#f1356d"}}>DELETE</button>
             &nbsp;&nbsp;&nbsp;
-            <Link to={'/editBlog/'+blog.id} style={{backgroundColor:theme}}>EDIT</Link>
-            <hr style={{backgroundColor:theme,width:'100%',margin:'30px 5px 0px 0px'}}></hr>
+            <Link to={'/editBlog/'+blog.id} style={{backgroundColor:checked ? "#34568B" : "#f1356d"}}>EDIT</Link>
+            <hr style={{backgroundColor:checked ? "#34568B" : "#f1356d",width:'100%',margin:'30px 5px 0px 0px'}}></hr>
             <h2>Comments</h2>
             {
                 correspondingBlogComments.length > 0 
@@ -104,7 +104,7 @@ function SingleBlog() {
                     <textarea value={formValues.comment} id="comment" rows={5} name="comment" onChange={(e)=>handleChange(e)}/>
                     <br/>
                 </div>
-                <button style={{backgroundColor:theme}}>Add Comment</button>
+                <button style={{backgroundColor: checked ? "#34568B" : "#f1356d"}}>Add Comment</button>
             </form>
         </div>
     )

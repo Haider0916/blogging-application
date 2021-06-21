@@ -5,13 +5,13 @@ import './notFound.css';
 
 function NotFound() {
 
-    const theme = useTheme();
+    const [{checked}] = useTheme();
 
     return (
         <div className="notFound">
             <h1>404 - PAGE NOT FOUND</h1>
             <br/>
-            <Link to='/' style={{backgroundColor:theme,padding:'7px 14px'}}>BACK TO HOME</Link>
+            <Link to='/' style={{backgroundColor: checked ? "#34568B" : "#f1356d",padding:'7px 14px'}}>BACK TO HOME</Link>
         </div>
     )
 }

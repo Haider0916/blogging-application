@@ -6,7 +6,7 @@ import './createBlog.css'
 
 function CreateBlog() {
     const history = useHistory();
-    const [{theme},dispatch] = useTheme();
+    const [{checked},dispatch] = useTheme();
 
     const [formValues , setFormValues] = React.useState({
         title:'',
@@ -45,7 +45,7 @@ function CreateBlog() {
 
     return (
         <form className="createBlog" onSubmit={handleSubmit}>
-            <h1 style={{color:theme}}>Add New Blog</h1>
+            <h1 style={{color:checked ? "#34568B" : "#f1356d"}}>Add New Blog</h1>
             <div className="field">
                 <label htmlFor="title">Blog title:</label>
                 <input value={formValues.title} type="text" id="title" name="title" onChange={(e)=>handleChange(e)}/>
@@ -61,7 +61,7 @@ function CreateBlog() {
                 <textarea value={formValues.body} id="body" rows={5} name="body" onChange={(e)=>handleChange(e)}/>
                 <br/>
             </div>
-            <button style={{backgroundColor:theme}}>Add Blog</button>
+            <button style={{backgroundColor:checked ? "#34568B" : "#f1356d"}}>Add Blog</button>
         </form>
     )
 }

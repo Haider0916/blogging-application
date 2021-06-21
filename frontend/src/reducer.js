@@ -1,7 +1,7 @@
 import uuid from 'react-uuid'
 
 export const initialState = {
-    theme: '#f1356d',
+    checked:true,
     blogs: [
         {
             id:uuid(),
@@ -56,6 +56,11 @@ export const reducer = ( state , action ) => {
             return {
                 ...state,
                 comments:filteredComments
+            };
+        case "CHANGE_THEME":
+            return {
+                ...state,
+                checked:!state.checked
             };
         default:
             return state;

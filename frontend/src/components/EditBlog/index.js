@@ -6,7 +6,7 @@ import './editBlog.css'
 function EditBlog() {
     const history = useHistory();
     const passed_id = useParams().id;
-    const [{blogs,theme},dispatch] = useTheme();
+    const [{blogs,checked},dispatch] = useTheme();
     const validBlog = blogs.find(blog =>  blog.id === passed_id);
     
     const [formValues , setFormValues] = React.useState({
@@ -47,7 +47,7 @@ function EditBlog() {
 
     return (
         <form className="createBlog" onSubmit={handleSubmit}>
-            <h1 style={{color:theme}}>Edit Blog</h1>
+            <h1 style={{color: checked ? "#34568B" : "#f1356d"}}>Edit Blog</h1>
             <div className="field">
                 <label htmlFor="title">Blog title:</label>
                 <input value={formValues.title} type="text" id="title" name="title" onChange={(e)=>handleChange(e)}/>
@@ -63,7 +63,7 @@ function EditBlog() {
                 <textarea value={formValues.body} id="body" rows={5} name="body" onChange={(e)=>handleChange(e)}/>
                 <br/>
             </div>
-            <button style={{backgroundColor:theme}}>Edit Blog</button>
+            <button style={{backgroundColor: checked ? "#34568B" : "#f1356d"}}>Edit Blog</button>
         </form>
     )
 }
