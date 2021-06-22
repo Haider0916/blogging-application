@@ -13,8 +13,6 @@ function SingleBlog() {
         comment:''
     })
 
-    const [hover,toggleHover] = React.useState(false);
-
     function handleChange(e){
         setFormValues({
             ...formValues,
@@ -23,21 +21,19 @@ function SingleBlog() {
     }
 
     
-    const [ state , dispatch ] = useTheme();
-
-    const { blogs , checked , comments } = state;
+    const [ { blogs , checked , comments } , dispatch ] = useTheme();
 
     const passed_id = useParams().id;
 
     const correspondingBlogComments = comments
     .filter(comment => comment.blogID === passed_id)
     .map(comment => {
-        return <div onMouseLeave={() => toggleHover(false)} onMouseEnter={() => toggleHover(true)}  key={comment.id} style={{display:'flex',marginBottom:'12px',backgroundColor:'#e7e7e7',padding:'7px 14px',borderRadius:'7px'}}>
+        return <div onMouseLeave={() => dispatch({type:"COMMENT_UNHOVERED",payload:{commentID:comment.id}})} onMouseEnter={() => dispatch({type:"COMMENT_HOVERED",payload:{commentID:comment.id}})}  key={comment.id} style={{display:'flex',marginBottom:'12px',backgroundColor:'#e7e7e7',padding:'7px 14px',borderRadius:'7px'}}>
             <div style={{width:'95%'}}>
                 <h5 style={{margin:'5px 0px'}}>{comment.name}</h5>
                 <p style={{margin:'5px 0px'}}>{comment.body}</p>
             </div>
-            {hover && <div onClick={()=>deleteComment(comment.id)} style={{width:'5%',display:'flex',alignItems:'center',justifyContent:'center'}}>
+            {comment.hovered && <div onClick={()=>deleteComment(comment.id)} style={{width:'5%',display:'flex',alignItems:'center',justifyContent:'center'}}>
             <p style={{margin:0,cursor:'pointer'}}>&#x2716;</p>
             </div>}
         </div>
@@ -56,7 +52,8 @@ function SingleBlog() {
                     blogID:passed_id,
                     id:uuid(),
                     name:name,
-                    body:comment
+                    body:comment,
+                    hovered:false
                 }
             }
         });

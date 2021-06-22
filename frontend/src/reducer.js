@@ -26,6 +26,7 @@ export const initialState = {
 }
 
 export const reducer = ( state , action ) => {
+    console.log('here');
     switch(action.type) {
         case 'ADD_BLOG':         
             return {
@@ -62,6 +63,26 @@ export const reducer = ( state , action ) => {
                 ...state,
                 checked:!state.checked
             };
+        case "COMMENT_HOVERED":
+            let comments = state.comments.map(comment => {
+                return comment.id === action.payload.commentID
+                ? {...comment, hovered:true } 
+                : comment
+            })
+            return {
+                ...state,
+                comments
+            }
+        case "COMMENT_UNHOVERED":
+            const tempcomments = state.comments.map(comment => {
+                return comment.id === action.payload.commentID
+                ? {...comment, hovered:false } 
+                : comment
+            })
+            return {
+                ...state,
+                comments:tempcomments
+            }
         default:
             return state;
     }
