@@ -26,7 +26,6 @@ export const initialState = {
 }
 
 export const reducer = ( state , action ) => {
-    console.log('here');
     switch(action.type) {
         case 'ADD_BLOG':         
             return {
