@@ -3,8 +3,13 @@ import { useParams , useHistory , Link } from 'react-router-dom';
 import uuid from 'react-uuid';
 import './singleBlog.css';
 import {useTheme} from '../../contexts/appContext';
+import axios from 'axios';
 
 function SingleBlog() {
+
+    const [ state , dispatch ] = useTheme();
+    const { blogs , checked , comments } = state;
+
 
     const history = useHistory();
 
@@ -21,7 +26,7 @@ function SingleBlog() {
     }
 
     
-    const [ { blogs , checked , comments } , dispatch ] = useTheme();
+
 
     const passed_id = useParams().id;
 
@@ -40,7 +45,7 @@ function SingleBlog() {
     })
 
 
-    const blog = blogs.find(blog => blog.id === passed_id)
+    const blog = blogs.find(blog => blog._id === passed_id)
 
     function handleSubmit(e){
         e.preventDefault();
@@ -63,9 +68,18 @@ function SingleBlog() {
         })
     }
 
-    function handleDelete(id){
-        dispatch({type:'DELETE_BLOG',payload:{id:id}});
-        history.push('/');
+    async function handleDelete(id){
+        try {
+            const r = await axios.delete(`http://localhost:8080/blogs/${id}`)
+            if(r.statusText === "OK"){
+                history.push('/');
+            }
+            else{
+                console.log(r);
+            }
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     function deleteComment(id){
@@ -77,9 +91,9 @@ function SingleBlog() {
             <h3 style={{color: checked ? "#34568B" : "#f1356d"}}>{blog.title}</h3>
             <p>written by <b>{blog.author}</b></p>
             <p>{blog.body}</p>
-            <button onClick={()=>{handleDelete(blog.id)}} style={{backgroundColor:checked ? "#34568B" : "#f1356d"}}>DELETE</button>
+            <button onClick={()=>{handleDelete(blog._id)}} style={{backgroundColor:checked ? "#34568B" : "#f1356d"}}>DELETE</button>
             &nbsp;&nbsp;&nbsp;
-            <Link to={'/editBlog/'+blog.id} style={{backgroundColor:checked ? "#34568B" : "#f1356d"}}>EDIT</Link>
+            <Link to={'/editBlog/'+blog._id} style={{backgroundColor:checked ? "#34568B" : "#f1356d"}}>EDIT</Link>
             <hr style={{backgroundColor:checked ? "#34568B" : "#f1356d",width:'100%',margin:'30px 5px 0px 0px'}}></hr>
             <h2>Comments</h2>
             {
