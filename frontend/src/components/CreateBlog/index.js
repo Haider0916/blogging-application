@@ -1,7 +1,8 @@
 import React from 'react'
 import {useHistory} from 'react-router-dom'
 import {useTheme} from '../../contexts/appContext';
-import uuid from 'react-uuid';
+// import uuid from 'react-uuid';
+import axios from "axios";
 import './createBlog.css'
 
 function CreateBlog() {
@@ -9,22 +10,35 @@ function CreateBlog() {
     const [{checked},dispatch] = useTheme();
 
     const [formValues , setFormValues] = React.useState({
-        title:'',
-        author:'',
-        body:'',
+        title:'This is the title',
+        author:'This is the author',
+        body:'This is the body',
     })
 
-    function handleSubmit(e){
+    async function handleSubmit(e){
         e.preventDefault();
-        const {title,author,body} = formValues;
+        // const {title,author,body} = formValues;
+
+        let result;
+
+        //Make the API call to post new blog here
+        try {
+            result = await axios.post(`http://localhost:8080/blogs`, formValues)
+            console.log({result})
+        } catch (error) {
+            console.log({error});
+        }
+
+        const {_id, title, author, body} = result;
+
         dispatch({
             type:'ADD_BLOG',
             payload:{
                 newBlog:{
-                    id:uuid(),
-                    title:title,
-                    author:author,
-                    body:body
+                    id:_id,
+                    title,
+                    author,
+                    body
                 }
             }
         });        

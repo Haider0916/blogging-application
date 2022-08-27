@@ -8,6 +8,13 @@
     color: black;
 }
 
+.home .noPosts{
+    display:'flex';
+    height:100;
+    align-items:'center';
+    justify-content:'center';
+}
+
 .card{
     width: 100%;
     padding: 14px;
@@ -21,6 +28,15 @@
     box-shadow: 3px 3px 5px 1px darkgray;
     cursor: pointer;
 }
+
+.card a p:nth-child(3) { 
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
 
 .card h3{
     /* color: #f1356d; */
