@@ -7,7 +7,7 @@ import './editBlog.css'
 function EditBlog() {
     const history = useHistory();
     const passed_id = useParams().id;
-    const [{ blogs, checked }, dispatch] = useTheme();
+    const [{ blogs, checked }] = useTheme();
     const validBlog = blogs.find(blog => blog._id === passed_id);
 
     const [formValues, setFormValues] = React.useState({
@@ -19,7 +19,7 @@ function EditBlog() {
     async function handleSubmit(e) {
         e.preventDefault();
         try {
-            const result = await axios.put(`http://localhost:8080/blogs/${validBlog._id}`, formValues);
+            await axios.put(`http://localhost:8080/blogs/${validBlog._id}`, formValues);
             setFormValues({
                 title: '',
                 author: '',

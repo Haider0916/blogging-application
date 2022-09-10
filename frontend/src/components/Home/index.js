@@ -13,6 +13,7 @@ function Home() {
         const fetcher = async () => {
             dispatch({type: 'BLOG_LOADING'})
             const result = await axios.get('http://localhost:8080/blogs')
+            // console.log(result)
             dispatch({type: 'INITIAL_FETCH', payload: {
                 blogs:result.data
             }})

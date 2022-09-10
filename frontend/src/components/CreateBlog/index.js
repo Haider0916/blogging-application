@@ -7,7 +7,7 @@ import './createBlog.css'
 
 function CreateBlog() {
     const history = useHistory();
-    const [{checked},dispatch] = useTheme();
+    const [{checked}] = useTheme();
 
     const [formValues , setFormValues] = React.useState({
         title:'This is the title',
@@ -19,29 +19,29 @@ function CreateBlog() {
         e.preventDefault();
         // const {title,author,body} = formValues;
 
-        let result;
+        // let result;
 
         //Make the API call to post new blog here
         try {
-            result = await axios.post(`http://localhost:8080/blogs`, formValues)
-            console.log({result})
+            await axios.post(`http://localhost:8080/blogs`, formValues)
+            // console.log({result})
         } catch (error) {
             console.log({error});
         }
 
-        const {_id, title, author, body} = result;
+        // const {_id, title, author, body} = result;
 
-        dispatch({
-            type:'ADD_BLOG',
-            payload:{
-                newBlog:{
-                    id:_id,
-                    title,
-                    author,
-                    body
-                }
-            }
-        });        
+        // dispatch({
+        //     type:'ADD_BLOG',
+        //     payload:{
+        //         newBlog:{
+        //             id:_id,
+        //             title,
+        //             author,
+        //             body
+        //         }
+        //     }
+        // });        
         setFormValues({
             title:'',
             author:'',

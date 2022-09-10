@@ -10,10 +10,6 @@
     border-radius: 5px;
 }
 
-.singleBlog h3{
-    /* color: #f1356d; */
-}
-
 .singleBlog .field{
     display: flex;
     flex-direction: column;
@@ -32,6 +28,5 @@
     padding: 7px 14px;
     border: none;
     border-radius:5px;
-    /* background-color: #f1356d; */
     color: white;
 }
